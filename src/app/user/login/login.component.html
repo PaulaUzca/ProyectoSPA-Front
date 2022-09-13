@@ -1,0 +1,38 @@
+<section class="vh-100">
+    <div class="container-fluid">
+      <div class="row align-items-center justify-content-center mt-2 p-5">
+        <div class="col-sm-5 justify-content-center align-self-center">
+          <div class="row align-items-center justify-content-center">
+          <h1 class="row justify-content-md-center display-2" >Ingresar</h1>
+            <form [formGroup]="form" (ngSubmit)="login()" class="row align-items-center">
+              <div *ngIf="errorMsg"  class="alert alert-secondary" role="alert">
+                {{errorMsg}}
+              </div>
+              <mat-form-field appearance="fill">
+                <mat-label>Username o email</mat-label>
+                <input matInput formControlName="username">
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+  
+              <button mat-button class="callout black submit" type="submit">Ingresar</button>
+              <div class="row align-self-center mt-5">
+                <p>No tienes una cuenta? <a href="" class="link-info" (click)="goRegistro()">Registrate aqui</a></p>
+                </div>
+            </form> 
+
+          </div> 
+        </div>
+        <div class="col-sm-7">
+          <img src="https://i.pinimg.com/originals/30/1a/08/301a08ff50fc8ecbf88b8bf199c678df.png"
+            alt="Login image" class="w-100" style="object-fit: contain; object-position: left;">
+        </div>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,14 @@
+
+.card-text:last-child {
+    height: 150px;
+    overflow-y: hidden;
+  }
+  
+  .card-columns {
+    @media (min-width: 1200px) {
+      column-count: 6;
+    }
+    @media (min-width: 992px)  {
+      column-count: 5;
+    }
+  }

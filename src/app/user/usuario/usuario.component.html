@@ -1,0 +1,12 @@
+<h2>Mis películas</h2>
+
+<div class="card-columns">
+    <div class="card" *ngFor="let muvi of peliculasList">
+      <img class="card-img-top" [src]="muvi.imageURL" [alt]="muvi.titulo">
+      <div class="card-body">
+        <h5 class="card-title">{{muvi.titulo}}</h5>
+        <p class="card-text"><small class="text-muted">{{muvi.nombreGenero}} | {{muvi.estreno}}</small></p>
+        <p class="card-text">{{muvi.descripcion}}</p>
+      </div>
+    </div>
+  </div>
