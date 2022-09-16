@@ -20,6 +20,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MovieformComponent } from './movies/movieform/movieform.component';
 import { MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { GuestComponent } from './layout/guest/guest.component';
+import { PageComponent } from './layout/page/page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     IndexComponent,
     RatingComponent,
     MovieformComponent,
+    GuestComponent,
+    PageComponent,
   ],
   imports: [
     BrowserModule,
