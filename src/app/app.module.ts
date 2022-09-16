@@ -17,7 +17,9 @@ import {MatCardModule} from '@angular/material/card';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button'
 import { MatInputModule } from '@angular/material/input';
-
+import { MovieformComponent } from './movies/movieform/movieform.component';
+import { MatSelectModule} from '@angular/material/select';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,12 +28,12 @@ import { MatInputModule } from '@angular/material/input';
     UsuarioComponent,
     IndexComponent,
     RatingComponent,
+    MovieformComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule,
     MatMenuModule,
     HttpClientModule,
     MatFormFieldModule,
@@ -40,7 +42,9 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     FormsModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

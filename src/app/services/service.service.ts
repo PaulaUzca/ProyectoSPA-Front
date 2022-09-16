@@ -28,6 +28,8 @@ export class ServiceService {
   getAllPeliculasByIdCreador(idUsuario: number){
     return this.http.get<Pelicula[]>(`/api/movies/creador/id/${idUsuario}`);
   }
+
+  addPelicula(pelicula: Pelicula){
+    return this.http.post<Pelicula>(`/api/movies/add`, pelicula);
+  }
 }
-
-

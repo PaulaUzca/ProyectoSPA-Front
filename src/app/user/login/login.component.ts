@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError, Observable, of } from 'rxjs';
 import { Usuario } from 'src/app/models/UsuarioDTO';
 import { ServiceService } from 'src/app/services/service.service';
 
@@ -38,7 +37,8 @@ export class LoginComponent implements OnInit {
     .subscribe(
       (usuario) => {
         if(usuario){
-          localStorage.setItem('idUser', usuario.id.toString());
+          localStorage.setItem('user', JSON.stringify(usuario));
+          // TODO aqui falta que se espere un ratico para cargar el localstorage
           this.router.navigate(["index",'']);
         }},
         (error) =>{

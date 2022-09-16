@@ -1,5 +1,5 @@
-<h1 class="text-center">Muvis más recientes!</h1>
-
+<div class="container-fluid p-5 ">
+<h1 class="text-center mb-5">Muvis más recientes!</h1>
 <div class="card-columns">
   <div class="card" *ngFor="let muvi of peliculasList">
     <img class="card-img-top" [src]="muvi.imageURL" [alt]="muvi.titulo">
@@ -9,4 +9,5 @@
       <p class="card-text">{{muvi.descripcion}}</p>
     </div>
   </div>
+</div>
 </div>

@@ -25,9 +25,11 @@ export class IndexComponent implements OnInit {
 
   loadListeners(){
     this.router.events.subscribe((event: any) => {
-      if (event instanceof NavigationStart) {
-        if(this.currentNavigation !== event.id){
-          this.currentNavigation = event.id;
+      if (event instanceof NavigationStart){ 
+        var id = event.url.match(/\d+/);
+        var nav = id != null? id : '';
+        if(this.currentNavigation != nav){
+          this.currentNavigation = nav;
           this.getPeliculas();
         }
       }
@@ -37,6 +39,7 @@ export class IndexComponent implements OnInit {
   /** Obtiene las peliculas por id genero, si no hay las obtiene todas */
   getPeliculas(){
     var id: any = this.currentNavigation;
+    console.log(id);
     this.service.getAllPeliculas(id === null?'': id).subscribe((peliculas) => {
       this.peliculasList = peliculas;
     })

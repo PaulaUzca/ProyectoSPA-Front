@@ -10,43 +10,56 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
-	<section class="ftco-section">
-		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	    	<a class="navbar-brand" href="index.html">MUVI</a>
-	    	<form action="#" class="searchform order-sm-start order-lg-last">
-          <div class="form-group d-flex">
-            <input type="text" class="form-control pl-3" placeholder="Search">
-            <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button>
-          </div>
-        </form>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="fa fa-bars"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav m-auto">
-	        	<li class="nav-item active"><a href="#" class="nav-link" (click)="Inicio()">Inicio</a></li>
-	        	<li class="nav-item dropdown">
-              <button mat-button [matMenuTriggerFor]="generos" class="nav-link" style="background: none; border:none;">Generos</button>    
-                <mat-menu #generos="matMenu">
-                    <button mat-menu-item *ngFor="let item of generosList" [routerLink]="['index', item.id]">
-                        {{item.nombre}}
-                    </button>
-                </mat-menu>
-            </li>
-	          <li class="nav-item"><a [routerLink]="['usuario']" class="nav-link" *ngIf="userLoggedIn">Mis peliculas</a></li>
-	        </ul>
-	      </div>
-          <button mat-button class="callout primary">Agregar Pelicula</button>
-          <button mat-button class="callout" (click)="LogIn()">Login</button>
-          <button mat-button class="callout black" *ngIf="userLoggedIn">Logout</button>
-          <button mat-button class="callout" (click)="Registro()" *ngIf="!userLoggedIn">Registro</button>
-	    </div>
-	  </nav>
-    <!-- END nav -->
-
-	</section>
-
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">
+					<img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+					MUVI
+				  </a>
+			  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				  <li class="nav-item">
+					<a class="nav-link active" aria-current="page" (click)="Inicio()">Inicio</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link"  [routerLink]="['usuario']" *ngIf="userLoggedIn">Mis películas</a>
+				  </li>
+				  <li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					  Generos
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+					  <li *ngFor="let item of generosList"><a class="dropdown-item"  [routerLink]="['index', item.id]">{{item.nombre}}</a></li>
+					</ul>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link btn-outline-success" (click)="AgregarMuvi()">Agregar película</a>
+				  </li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0 align-self-end" style="margin-left: auto !important;">
+				  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+				  <button class="btn btn-outline-success" type="submit">Search</button>
+				</form>
+				<ul class="navbar-nav mb-2 mb-lg-0 align-self-end">
+					<li class="nav-item">
+					  <a class="nav-link" (click)="LogIn()" *ngIf="!userLoggedIn">Log in</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" *ngIf="userLoggedIn">{{usuario?.username}}</a>
+					  </li>
+					<li class="nav-item">
+					  <a class="nav-link" (click)="LogOut()" *ngIf="userLoggedIn">Log out</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" (click)="Registro()" *ngIf="!userLoggedIn">Registro</a>
+					  </li>
+				  </ul>
+			  </div>
+			</div>
+		  </nav>
     <router-outlet></router-outlet>
 
   <script src="../assets/js/main.js"></script>

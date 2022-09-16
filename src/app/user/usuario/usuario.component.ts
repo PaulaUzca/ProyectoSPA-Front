@@ -11,23 +11,23 @@ export class UsuarioComponent implements OnInit {
 
   peliculasList: Pelicula[] = [];
   userIsLoggedIn: boolean = false;
-  idUsuario: any;
+  user: any;
   constructor(private service: ServiceService) { }
 
   ngOnInit(): void {
-    this.userIsLoggedIn = this.isUserLogged() != null? true : false; 
+    this.userIsLoggedIn = this.isUserLogged();
     this.getPeliculas();
 
   }
 
   isUserLogged(){
-    this.idUsuario = localStorage.getItem("idUser");
-    return this.idUsuario;
+    this.user = JSON.parse(localStorage.getItem("user")  || '{}');
+    return this.user?.id;
   }
 
-    /** Obtiene las peliculas por id genero, si no hay las obtiene todas */
+    /** Obtiene las peliculas por id creador*/
     getPeliculas(){
-      this.service.getAllPeliculasByIdCreador(this.idUsuario).subscribe((peliculas) => {
+      this.service.getAllPeliculasByIdCreador(this.user?.id).subscribe((peliculas) => {
         this.peliculasList = peliculas;
       })
     }

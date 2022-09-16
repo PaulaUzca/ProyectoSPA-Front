@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Genero } from './models/GeneroDTO';
+import { Usuario } from './models/UsuarioDTO';
 import { ServiceService } from './services/service.service';
 
 @Component({
@@ -13,21 +14,28 @@ export class AppComponent implements OnInit{
   title = 'Movie';
   generosList: Genero[] = [];
   userLoggedIn: boolean = false;
+  usuario: Usuario | undefined;
 
   constructor(
     private router: Router,
     private service: ServiceService){}
 
   ngOnInit(): void {
-    this.userLoggedIn = this.isUserLogged() != null? true : false;
+    this.isUserLogged();
     this.service.getGeneros().subscribe((generos) => {
       this.generosList = generos;
+      localStorage.setItem('generos', JSON.stringify(this.generosList));
     });
+
     this.Inicio();
   }
 
   isUserLogged(){
-    return localStorage.getItem("idUser")
+    console.log(localStorage.getItem("user"))
+    this.usuario = JSON.parse(localStorage.getItem("user") || '{}');
+    console.log(this.usuario);
+    this.userLoggedIn = this.usuario?.id ? true : false;
+    console.log(this.userLoggedIn);
   }
 
   Registro(){
@@ -44,5 +52,14 @@ export class AppComponent implements OnInit{
 
   UsuarioPeliculas(){
     this.router.navigate(["usuario"]);
+  }
+  
+  AgregarMuvi(){
+    this.router.navigate(["agregarPelicula"]);
+  }
+
+  LogOut(){
+    localStorage.setItem('user', '{}');
+    this.isUserLogged();
   }
 }
