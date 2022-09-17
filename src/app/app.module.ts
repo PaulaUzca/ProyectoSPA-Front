@@ -22,6 +22,9 @@ import { MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { GuestComponent } from './layout/guest/guest.component';
 import { PageComponent } from './layout/page/page.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +51,9 @@ import { PageComponent } from './layout/page/page.component';
     MatButtonModule,
     MatInputModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
