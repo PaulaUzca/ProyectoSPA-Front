@@ -32,4 +32,8 @@ export class ServiceService {
   addPelicula(pelicula: Pelicula){
     return this.http.post<Pelicula>(`/api/movies/add`, pelicula);
   }
+
+  buscarPelicula(titulo: string){
+    return this.http.get<Pelicula[]>(`api/movies/search?titulo=${titulo}`)
+  }
 }

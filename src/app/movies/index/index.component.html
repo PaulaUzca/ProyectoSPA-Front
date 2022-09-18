@@ -2,36 +2,48 @@
 <ngb-carousel #carousel *ngIf="showCarousel">
   <ng-template ngbSlide>
     <div class="picsum-img-wrapper">
-      <img src="https://cineuropa.org/imgCache/2022/09/03/1662194453778_0620x0435_26x0x1001x702_1662194473007.jpg" alt="Random first slide">
+      <img src="https://cdn.colombia.com/sdi/2021/10/21/dune-fecha-de-estreno-colombia-warner-bros-timothee-chalamet-denis-villeneuve-962264.jpg" alt="Random first slide">
     </div>
     <div class="carousel-caption">
-      <h5>Bones and all</h5>
-        <p>coming very soon</p>
+      <h5>DUNE</h5>
+        <p>Con Timothée Chalamet y Zendaya</p>
     </div>
   </ng-template>
   <ng-template ngbSlide>
     <div class="picsum-img-wrapper">
-      <img src="https://film-book.com/wp-content/uploads/2022/08/dora-postigo-rainbow-01-700x400-1-700x400.jpg" alt="Random second slide">
+      <img src="https://images4.alphacoders.com/573/57394.jpg" alt="Random second slide">
     </div>
     <div class="carousel-caption">
-      <h5>Rainbow</h5>
-      <p>Un remake del mago de OZ </p>
+      <h5>The Dark Knight</h5>
+      <p>La mejor película de batman?</p>
     </div>
   </ng-template>
   <ng-template ngbSlide>
     <div class="picsum-img-wrapper">
-      <img src="https://media.vandalsports.com/i/640x360/12-2021/2021129113822_1.jpg" alt="Random third slide">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj1zCYwY3zEUYruz9BJKbDm3dW05SmrbK2UX1ImZiO-DuubwGvRcxUoMdy7IySleOK6nZuDhrWOEkaB2r1Ty1Y4MXuusXrM6_rx7oTc3nFoBr5ho6bxNhAafFlAic-U1pCUDqgkDqPKPZgQ2gE_fEAGcER3wzbdId8GwD4cs23Lu6ird7NzocpR5FqG/w1200-h630-p-k-no-nu/P%C3%B3ster%20Avatar.jpg" alt="Random third slide">
     </div>
     <div class="carousel-caption">
       <h5>Avatar 2</h5>
       <p>El regreso de avatar</p>
     </div>
   </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img src="https://www.aircanada.com/content/dam/aircanada/portal/images/special-offers/lg-pixar-en.png" alt="Random third slide">
+    </div>
+    <div class="carousel-caption">
+      <h5>Turning red</h5>
+      <p>Merecía el premio</p>
+    </div>
+  </ng-template>
 </ngb-carousel>
 
+<div  class="container-fluid p-5 " *ngIf="!muvisFound">
+<h3 class="text-center mb-5">No se encontraron peliculas :c</h3>
+</div>
 <!-- Mostrar las peliculas -->
-<div class="container-fluid p-5 ">
-<h1 class="text-center mb-5">Muvis más recientes</h1>
+<div class="container-fluid p-5 " *ngIf="muvisFound">
+<h1 class="text-center mb-5" *ngIf="showCarousel">Muvis más recientes</h1>
 <div class="d-flex justify-content-center align-items-center">
 <mat-spinner *ngIf="wait"></mat-spinner>
 </div>
@@ -47,12 +59,17 @@
 </div>
 </div>
 
-<div class="jumbotron">
-  <h1 class="display-4">Agrega tus propias películas!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-  <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Agregar película</a>
-  </p>
+<div class="jumbotron row justify-content-center">
+  <div class="col col-md-6 col-sm-12 p-4 pl-0">
+    <img src="https://i.imgur.com/4zxFtGb.png" width="auto" height="100%"class="rounded float-end col-md-6" alt="Imagen gato MUVI">
+    </div>
+  <div class="col col-md-5 col-sm-12 p-4">
+    <h1 class="display-4 col-md-6">Agrega tus propias películas!</h1>
+    <p class="lead">Escribe tu propia reseña de la pelicula y sigue su rating!</p>
+    <hr class="my-4">
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="#" role="button" [routerLink]="['agregarPelicula']">Agregar película</a>
+    </p>
+  </div> 
+
 </div>

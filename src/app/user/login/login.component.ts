@@ -51,10 +51,6 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  goRegistro(){
-    this.router.navigate(["register"]);
-  }
-
   /** Abirir un mensajito de dialogo */
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {

@@ -13,10 +13,10 @@ import { ServiceService } from 'src/app/services/service.service';
 export class IndexComponent implements OnInit {
   @ViewChild('carousel', {static : true}) carousel: NgbCarousel | undefined;
   peliculasList: Pelicula[] = [];
-  currentNavigation: any;
   showCarousel = true;
   // Esperar a que carguen los datos
   wait: boolean = true;
+  muvisFound = true;
   constructor(private service: ServiceService,
     private route: ActivatedRoute,
     private router: Router,
@@ -29,37 +29,56 @@ export class IndexComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.currentNavigation = this.route.snapshot.paramMap.get('id');
-    this.getPeliculas();
-    this.loadListeners();
     this.carousel?.cycle();
-  }
+    this.getPeliculas('');
 
-  /** Cargar listeners */
-  loadListeners(){
+    // Escuchar la ruta para hacer las busquedas
+    this.route.queryParams.subscribe((r) => {
+      console.log(r)
+      if(r['titulo']){
+        this.getPeliculaByTitulo(r["titulo"]);
+        this.showCarousel = false;
+      }
 
-    // Escuchar cambios en la url para mostrar peliculas por genero
-    this.router.events.subscribe((event: any) => {
-      if (event instanceof NavigationStart){ 
-        var id = event.url.match(/\d+/);
-        var nav = id != null? id : '';
-        if(this.currentNavigation != nav){
+      else{
+
+        if(r['idgenero']){
+          this.getPeliculas(r['idgenero']);
           this.showCarousel = false;
-          this.currentNavigation = nav;
-          this.getPeliculas();
         }
       }
     });
   }
 
   /** Obtiene las peliculas por id genero, si no hay las obtiene todas */
-  getPeliculas(){
+  getPeliculas(id: string){
     this.wait = true;
     this.peliculasList = [];
-    var id: any = this.currentNavigation;
-    this.service.getAllPeliculas(id === null?'': id).subscribe((peliculas) => {
+    this.service.getAllPeliculas(id).subscribe((peliculas) => {
       this.peliculasList = peliculas;
       this.wait = false;
+      if(this.peliculasList){
+        this.muvisFound = true
+      }
+      else{
+        this.muvisFound = false
+
+      }
+    })
+  }
+
+  getPeliculaByTitulo(titulo: string){
+    this.wait = true;
+    this.peliculasList = [];
+    this.service.buscarPelicula(titulo).subscribe((peliculas) => {
+      this.peliculasList = peliculas;
+      this.wait = false;
+      if(this.peliculasList){
+        this.muvisFound = true
+      }
+      else{
+        this.muvisFound = false
+      }
     })
   }
 

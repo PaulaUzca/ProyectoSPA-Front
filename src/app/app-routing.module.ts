@@ -16,7 +16,8 @@ const routes: Routes = [
       component: PageComponent,
       children: [
         {path: "", component: IndexComponent},
-        {path: "index/:id", component: IndexComponent},
+        {path: "index", component: IndexComponent},
+        {path: "buscar", component: IndexComponent},
         {path: "agregarPelicula", component: MovieformComponent},
         {path: "usuario", component: UsuarioComponent},
       ]

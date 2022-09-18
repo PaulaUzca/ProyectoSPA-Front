@@ -23,7 +23,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { GuestComponent } from './layout/guest/guest.component';
 import { PageComponent } from './layout/page/page.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [

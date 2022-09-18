@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServiceService } from 'src/app/services/service.service';
 import { Pelicula } from 'src/app/models/PeliculaDTO';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movieform',
@@ -26,30 +27,15 @@ export class MovieformComponent implements OnInit {
   constructor(private http:HttpClient,
     private formBuilder: FormBuilder,
     private service: ServiceService,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
     this.user =  JSON.parse(localStorage.getItem("user") || '{}')
     this.generosList = JSON.parse(localStorage.getItem('generos') || '{}');
     this.buildForm();
   }
-
-
-  /** Verificar si la imagen ingresada por el usuaio existe para mostrarla, de lo contrario mostrar el placeholderImg */
-  onURLInserted(){
-    this.http.get(this.imagenURL, {observe: 'response', responseType: 'text'}).subscribe( (response) => {
-      if(response.status === 200){
-        this.imageToShow = this.imagenURL;
-      }
-      else{
-        this.imageToShow = this.placeholderImg;
-      }
-    },
-    (error =>{
-      this.imageToShow = this.placeholderImg;
-    }));
-  }
-
   /** Cargar los listeners de los campo */
   loadListeners(){
     this.form.controls.imageURL.valueChanges.subscribe(() =>{
@@ -95,6 +81,10 @@ export class MovieformComponent implements OnInit {
       idCreador: [this.user?.id, Validators.required],
       nombreCreador: null,
     });
+  }
+
+  LogIn(){
+    this.router.navigate(["login"]);
   }
 
 }

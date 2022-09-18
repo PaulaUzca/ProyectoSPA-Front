@@ -17,10 +17,11 @@ export class PageComponent implements OnInit {
   userLoggedIn: boolean = false;
   usuario: Usuario | undefined;
 
+  busqueda: string = "";
   constructor(
     private router: Router,
     private service: ServiceService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
     ){}
 
   ngOnInit(): void {
@@ -31,6 +32,11 @@ export class PageComponent implements OnInit {
     });
 
     this.Inicio();
+  }
+
+  // Buscar pelicula ingresada por el usuario
+  buscarPelicula(){
+    this.router.navigate([""], { queryParams: { titulo: this.busqueda } });
   }
 
   isUserLogged(){

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import {NgbActiveModal, NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 import { Pelicula } from 'src/app/models/PeliculaDTO';
 import { ServiceService } from 'src/app/services/service.service';
+import { EditMuviFormComponent } from './edit-muvi-form/edit-muvi-form.component';
 
 @Component({
   selector: 'app-usuario',
@@ -8,11 +10,16 @@ import { ServiceService } from 'src/app/services/service.service';
   styleUrls: ['./usuario.component.scss']
 })
 export class UsuarioComponent implements OnInit {
-
   peliculasList: Pelicula[] = [];
   userIsLoggedIn: boolean = false;
   user: any;
-  constructor(private service: ServiceService) { }
+  constructor(private service: ServiceService,
+    private modalService: NgbModal,
+    private config: NgbModalConfig) {
+      config.backdrop = 'static';
+      config.keyboard = false;
+     }
+
 
   ngOnInit(): void {
     this.userIsLoggedIn = this.isUserLogged();
@@ -25,10 +32,15 @@ export class UsuarioComponent implements OnInit {
     return this.user?.id;
   }
 
-    /** Obtiene las peliculas por id creador*/
-    getPeliculas(){
-      this.service.getAllPeliculasByIdCreador(this.user?.id).subscribe((peliculas) => {
-        this.peliculasList = peliculas;
-      })
+  /** Obtiene las peliculas por id creador*/
+  getPeliculas(){
+    this.service.getAllPeliculasByIdCreador(this.user?.id).subscribe((peliculas) => {
+      this.peliculasList = peliculas;
+    })
+  }
+
+    open() {
+      const modalRef = this.modalService.open(EditMuviFormComponent);
+      modalRef.componentInstance.name = 'World';
     }
 }

@@ -12,3 +12,7 @@
       column-count: 5;
     }
   }
+
+  .modal-backdrop {
+    z-index: -1 !important;
+  }
