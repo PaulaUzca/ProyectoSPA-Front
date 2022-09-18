@@ -25,6 +25,10 @@ export class ServiceService {
     return this.http.post<Usuario>(`/api/usuario/login`, user);
   }
 
+  registerUser(user: Usuario): Observable<any>{
+    return this.http.post<Usuario>(`/api/usuario/register`, user);
+  }
+
   getAllPeliculasByIdCreador(idUsuario: number){
     return this.http.get<Pelicula[]>(`/api/movies/creador/id/${idUsuario}`);
   }
