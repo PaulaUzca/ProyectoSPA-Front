@@ -46,7 +46,7 @@
                 <mat-form-field class="col-md-12" appearance="outline" class="col-md-12">
                     <mat-label>Imagen</mat-label>
                     <input formControlName="imageURL" maxlength="700" type="URL" name="imagen" [(ngModel)]="imagenURL" matInput placeholder="Escribe la url de la imagen">
-                    <mat-hint class="hint-error" *ngIf="image404">No es posible cargar la imagen ingresada, intentelo con otra imagen</mat-hint>
+                    <mat-hint class="hint-error">No es posible cargar la imagen ingresada, intentelo con otra imagen</mat-hint>
                     <mat-error *ngIf="this.form.controls.imageURL.invalid">{{requiredError}}</mat-error>
                 </mat-form-field>
               

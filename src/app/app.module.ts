@@ -23,6 +23,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { GuestComponent } from './layout/guest/guest.component';
 import { PageComponent } from './layout/page/page.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
+import { EditMuviFormComponent } from './user/usuario/edit-muvi-form/edit-muvi-form.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -36,6 +38,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MovieformComponent,
     GuestComponent,
     PageComponent,
+    EditMuviFormComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatSelectModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    NgbModule,
+    MatDialogModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

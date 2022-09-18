@@ -3,6 +3,7 @@ import {NgbActiveModal, NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstr
 import { Pelicula } from 'src/app/models/PeliculaDTO';
 import { ServiceService } from 'src/app/services/service.service';
 import { EditMuviFormComponent } from './edit-muvi-form/edit-muvi-form.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-usuario',
@@ -14,10 +15,7 @@ export class UsuarioComponent implements OnInit {
   userIsLoggedIn: boolean = false;
   user: any;
   constructor(private service: ServiceService,
-    private modalService: NgbModal,
-    private config: NgbModalConfig) {
-      config.backdrop = 'static';
-      config.keyboard = false;
+    public dialog: MatDialog) {
      }
 
 
@@ -39,8 +37,11 @@ export class UsuarioComponent implements OnInit {
     })
   }
 
-    open() {
-      const modalRef = this.modalService.open(EditMuviFormComponent);
-      modalRef.componentInstance.name = 'World';
-    }
+  openEdit() {
+    const dialogRef = this.dialog.open(EditMuviFormComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }

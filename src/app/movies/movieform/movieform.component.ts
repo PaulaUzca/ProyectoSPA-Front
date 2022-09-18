@@ -15,17 +15,13 @@ export class MovieformComponent implements OnInit {
 
   generosList: any[] = [];
 
-  imageToShow: string = "";
   imagenURL : string = "";
   placeholderImg: string = "https://i.imgur.com/ur4H4Cp.png";
-  image404: boolean = false;
-
   form: any;
   requiredError: string = "Este campo es requerido."
   user: any;
 
-  constructor(private http:HttpClient,
-    private formBuilder: FormBuilder,
+  constructor(private formBuilder: FormBuilder,
     private service: ServiceService,
     private snackBar: MatSnackBar,
     private router: Router,
@@ -38,19 +34,10 @@ export class MovieformComponent implements OnInit {
   }
   /** Cargar los listeners de los campo */
   loadListeners(){
-    this.form.controls.imageURL.valueChanges.subscribe(() =>{
-      if(this.imageToShow === this.placeholderImg){
-        this.image404 = true;
-      }
-      else{
-        this.image404 = false;
-      }
-    })
   }
 
   /** Crear registro de pelicula*/
   agregarMuvi(){
-    if(!this.image404){
       var pelicula = this.form.value as Pelicula
       this.service.addPelicula(pelicula).subscribe((response) =>{
         this.openSnackBar("Pelicula creada con éxito!", "OK");
@@ -58,7 +45,6 @@ export class MovieformComponent implements OnInit {
       error =>{
         this.openSnackBar(error.message + " :c", "OK");
       });
-    }
   }
 
 
