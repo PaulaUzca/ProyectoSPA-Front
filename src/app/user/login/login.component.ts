@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/UsuarioDTO';
 import { ServiceService } from 'src/app/services/service.service';
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private service: ServiceService,
     private router: Router,
+    private snackBar: MatSnackBar
     ) { }
 
   ngOnInit(): void {
@@ -38,8 +40,10 @@ export class LoginComponent implements OnInit {
       (usuario) => {
         if(usuario){
           localStorage.setItem('user', JSON.stringify(usuario));
-          // TODO aqui falta que se espere un ratico para cargar el localstorage
-          this.router.navigate(["index",'']);
+          // espera un ratico para cargar el localstorage
+          setTimeout('', 3000)
+          this.openSnackBar("Bienvenid@ " + usuario.username, '');
+          this.router.navigate(["",'']);
         }},
         (error) =>{
           this.errorMsg = error.message;
@@ -49,6 +53,13 @@ export class LoginComponent implements OnInit {
 
   goRegistro(){
     this.router.navigate(["register"]);
+  }
+
+  /** Abirir un mensajito de dialogo */
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 5000
+    });
   }
 
 }

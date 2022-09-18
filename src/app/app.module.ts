@@ -20,6 +20,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MovieformComponent } from './movies/movieform/movieform.component';
 import { MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { GuestComponent } from './layout/guest/guest.component';
+import { PageComponent } from './layout/page/page.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +34,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     IndexComponent,
     RatingComponent,
     MovieformComponent,
+    GuestComponent,
+    PageComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +51,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatButtonModule,
     MatInputModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

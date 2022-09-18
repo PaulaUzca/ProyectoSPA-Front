@@ -13,3 +13,25 @@
     column-count: 5;
   }
 }
+
+.picsum-img-wrapper{
+  img{
+    width: 100%;
+    max-height: 75vh;
+    object-fit: cover;
+    object-position: top;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.carousel-caption{
+  background-color: rgba(36, 36, 36, 0.129);
+  h5{
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+  }
+}

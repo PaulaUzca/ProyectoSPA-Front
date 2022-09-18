@@ -1,6 +1,41 @@
+<!-- Carrusel-->
+<ngb-carousel #carousel *ngIf="showCarousel">
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img src="https://cineuropa.org/imgCache/2022/09/03/1662194453778_0620x0435_26x0x1001x702_1662194473007.jpg" alt="Random first slide">
+    </div>
+    <div class="carousel-caption">
+      <h5>Bones and all</h5>
+        <p>coming very soon</p>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img src="https://film-book.com/wp-content/uploads/2022/08/dora-postigo-rainbow-01-700x400-1-700x400.jpg" alt="Random second slide">
+    </div>
+    <div class="carousel-caption">
+      <h5>Rainbow</h5>
+      <p>Un remake del mago de OZ </p>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img src="https://media.vandalsports.com/i/640x360/12-2021/2021129113822_1.jpg" alt="Random third slide">
+    </div>
+    <div class="carousel-caption">
+      <h5>Avatar 2</h5>
+      <p>El regreso de avatar</p>
+    </div>
+  </ng-template>
+</ngb-carousel>
+
+<!-- Mostrar las peliculas -->
 <div class="container-fluid p-5 ">
-<h1 class="text-center mb-5">Muvis más recientes!</h1>
-<div class="card-columns">
+<h1 class="text-center mb-5">Muvis más recientes</h1>
+<div class="d-flex justify-content-center align-items-center">
+<mat-spinner *ngIf="wait"></mat-spinner>
+</div>
+<div class="card-columns justify-content-center align-items-center">
   <div class="card" *ngFor="let muvi of peliculasList">
     <img class="card-img-top" [src]="muvi.imageURL" [alt]="muvi.titulo">
     <div class="card-body">
@@ -10,4 +45,14 @@
     </div>
   </div>
 </div>
+</div>
+
+<div class="jumbotron">
+  <h1 class="display-4">Agrega tus propias películas!</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Agregar película</a>
+  </p>
 </div>
