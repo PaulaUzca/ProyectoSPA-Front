@@ -4,8 +4,11 @@ export interface Pelicula{
     estreno: number;
     descripcion: string;
     imageURL: string;
-    idGenero: string;
+    idGenero: number;
     nombreGenero:string;
-    idCreador: string;
+    idCreador: number;
     nombreCreador: string;
+    stars: number;
+    likeAverage: number;
+    likeAmount: number;
 }

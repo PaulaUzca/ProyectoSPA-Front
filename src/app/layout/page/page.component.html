@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
 			<div class="container-fluid">
 				<div class="navbar-brand logo_container" >
 				<img src="https://i.imgur.com/4zxFtGb.png" alt="" width="70" height="auto" class="d-inline-block align-text-top">
@@ -24,10 +24,13 @@
 			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				  <li class="nav-item">
-					<a class="nav-link active" aria-current="page" (click)="Inicio()">Inicio</a>
+					<a class="nav-link" (click)="Inicio()">Inicio</a>
 				  </li>
 				  <li class="nav-item">
 					<a class="nav-link"  [routerLink]="['usuario']" *ngIf="userLoggedIn">Mis películas</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link"  [routerLink]="['likes']" *ngIf="userLoggedIn">Mis me gusta</a>
 				  </li>
 				  <li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -39,7 +42,7 @@
 				  </li>
 				</ul>
 				<div class="col">
-						<button type="button" class="btn btn-primary" (click)="AgregarMuvi()">Agregar película</button>
+						<button type="button" class="btn btn-primary callout black" (click)="AgregarMuvi()">Agregar película</button>
 				</div>
 				<div class="form-inline my-2 my-lg-0 align-self-end "  style="margin-left: auto !important;">
 					<form (ngSubmit)="buscarPelicula()" >
@@ -47,19 +50,22 @@
 						<mat-label>Buscar</mat-label>
 						<input matInput placeholder="Escribe el nombre de la película" [(ngModel)]="busqueda" name="busqueda">
 						<mat-icon matSuffix>search</mat-icon>
-					  </mat-form-field>
-					  <button mat-stroked-button type="submit">Buscar</button>
+					  </mat-form-field>					  
 					</form>
 				  </div>
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 pr-5">
 					<li class="nav-item">
-					  <a class="nav-link" (click)="LogIn()" *ngIf="!userLoggedIn">Log in</a>
+					  <a class="nav-link" (click)="LogIn()" *ngIf="!userLoggedIn">Ingresar</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" *ngIf="userLoggedIn">{{usuario?.username}}</a>
-					  </li>
-					<li class="nav-item">
-					  <a class="nav-link" (click)="LogOut()" *ngIf="userLoggedIn">Log out</a>
+					<li class="nav-item dropdown" *ngIf="userLoggedIn">
+						<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							{{usuario?.username}}
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li  class="dropdown-item">
+								<a class="nav-link" (click)="LogOut()" *ngIf="userLoggedIn">Cerrar sesión</a>
+							</li>
+						</ul>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" (click)="Registro()" *ngIf="!userLoggedIn">Registro</a>
@@ -69,8 +75,9 @@
 			</div>
 		  </nav>
 
+		  <main>
           <router-outlet></router-outlet>
-
+			</main>
           
           <script src="../assets/js/main.js"></script>
         </body>

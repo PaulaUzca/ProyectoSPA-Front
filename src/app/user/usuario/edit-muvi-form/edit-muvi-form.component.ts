@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -11,6 +11,8 @@ import { ServiceService } from 'src/app/services/service.service';
   styleUrls: ['./edit-muvi-form.component.scss']
 })
 export class EditMuviFormComponent implements OnInit {
+  @Output() goback = new EventEmitter(); 
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,
     private service: ServiceService,
@@ -24,7 +26,8 @@ export class EditMuviFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.generosList = JSON.parse(localStorage.getItem('generos') || '{}');
-    this.form.patch(this.data.pelicula);
+    this.buildForm();
+    this.form.patchValue(this.data?.pelicula);
   }
 
 
@@ -34,10 +37,16 @@ export class EditMuviFormComponent implements OnInit {
       duration: 3000
     });
   }
+
+  // volver a la vista
+  goBack(){
+    this.goback.emit({value: true});
+  }
   
   /** Construir el formulario */
   buildForm(){
     this.form = this.formBuilder.group({
+      id: [''],
       titulo: ['', Validators.required],
       estreno: [''],
       descripcion: [''],
@@ -46,6 +55,7 @@ export class EditMuviFormComponent implements OnInit {
       nombreGenero: null,
       idCreador: [null, Validators.required],
       nombreCreador: null,
+      stars: ['', Validators.required],
     });
   }
 }

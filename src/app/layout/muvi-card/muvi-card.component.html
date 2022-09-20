@@ -1,0 +1,23 @@
+<div class="card zoom-box" (click)="seeEvent()">
+    <img class="card-img-top" [src]="muvi.imageURL" [alt]="muvi.titulo">
+    <div class="card-body">
+      <h5 class="card-title">{{muvi.titulo}}</h5>
+      <div class="row">
+        <p class="col card-text"><small class="text-muted"><b>{{muvi.nombreCreador}}</b></small></p>
+        <star-rating class="col" [readOnly]="true" [rating]="muvi.stars"></star-rating>
+      </div>
+      <p class="card-text"><small class="text-muted">{{muvi.nombreGenero}} | {{muvi.estreno}}</small></p>
+      <p class="card-text description">{{muvi.descripcion}}</p>
+      <div class="row align-items-center" >
+        <div class="col align-self-start">
+          <mat-icon class="mat-18">favorite</mat-icon> <b>{{muvi.likeAverage}} / 5</b>
+        </div>
+        <div class="col align-self-start">
+          <mat-icon class="mat-18">groups</mat-icon> <b>{{muvi.likeAmount}}</b>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+        <button mat-stroked-button class="card-link" *ngIf="editar" (click)="editEvent()">Editar</button>
+    </div>
+</div>

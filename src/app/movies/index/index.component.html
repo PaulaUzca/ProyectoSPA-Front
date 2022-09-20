@@ -43,19 +43,12 @@
 </div>
 <!-- Mostrar las peliculas -->
 <div class="container-fluid p-5 " *ngIf="muvisFound">
-<h1 class="text-center mb-5" *ngIf="showCarousel">Muvis más recientes</h1>
-<div class="d-flex justify-content-center align-items-center">
-<mat-spinner *ngIf="wait"></mat-spinner>
+<h1 class="text-center mb-2" *ngIf="showCarousel">Muvis más recientes</h1>
+<div *ngIf="wait" class="d-flex justify-content-center align-items-center spinner_container">
+<mat-spinner></mat-spinner>
 </div>
 <div class="card-columns justify-content-center align-items-center">
-  <div class="card" *ngFor="let muvi of peliculasList">
-    <img class="card-img-top" [src]="muvi.imageURL" [alt]="muvi.titulo">
-    <div class="card-body">
-      <h5 class="card-title">{{muvi.titulo}}</h5>
-      <p class="card-text"><small class="text-muted">{{muvi.nombreGenero}} | {{muvi.estreno}}</small></p>
-      <p class="card-text">{{muvi.descripcion}}</p>
-    </div>
-  </div>
+  <app-muvi-card *ngFor="let muvi of peliculasList" [muvi]="muvi" (seeMuvi)="openView($event)"></app-muvi-card>
 </div>
 </div>
 
@@ -68,7 +61,7 @@
     <p class="lead">Escribe tu propia reseña de la pelicula y sigue su rating!</p>
     <hr class="my-4">
     <p class="lead">
-      <a class="btn btn-primary btn-lg" href="#" role="button" [routerLink]="['agregarPelicula']">Agregar película</a>
+      <a class="btn btn-primary btn-lg  black" href="#" role="button" [routerLink]="['agregarPelicula']">Agregar película</a>
     </p>
   </div> 
 

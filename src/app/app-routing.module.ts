@@ -6,6 +6,7 @@ import { IndexComponent } from './movies/index/index.component';
 import { MovieformComponent } from './movies/movieform/movieform.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
+import { UserLikesComponent } from './user/user-likes/user-likes.component';
 import { UsuarioComponent } from './user/usuario/usuario.component';
 
 
@@ -20,6 +21,7 @@ const routes: Routes = [
         {path: "buscar", component: IndexComponent},
         {path: "agregarPelicula", component: MovieformComponent},
         {path: "usuario", component: UsuarioComponent},
+        {path: "likes", component: UserLikesComponent},
       ]
     },
     {

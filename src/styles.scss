@@ -2,6 +2,8 @@
 @import './assets/css/style.css';
 @import './assets/css/animate.css';
 @import ".././node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+@import ".././node_modules/css-star-rating/scss/star-rating.scss";
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -13,10 +15,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
     font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif;
     letter-spacing: normal;
-    font-size: 13px;
-    padding: 4px 8px;
+    font-size: 16px;
+    padding: 8px 8px;
     font-weight: 400;
     position: relative;
+    border: none;
 }
 
 .submit{
@@ -30,9 +33,53 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .black{
     background-color: black;
-    color: white;
+    color: #efeeee;
 }
 
 .mat-form-field{
 
+}
+
+.navbar{
+    padding: 0px !important;
+    min-height: 70px;
+}
+
+.error-red{
+    color: red;
+}
+
+.zoom-box {
+    width: 100px;
+    height: 100px;
+    margin: 32px auto;
+    transition: transform .2s; /* Animation */
+  }
+  
+  .zoom-box:hover {
+    transform: scale(0.95);
+  }
+
+  .dialog-container-custom .mat-dialog-container{
+    overflow: hidden;
+  }
+
+  .dialog-container-custom-edit .mat-dialog-container{
+    overflow: hidden;
+  }
+
+
+  .dialog-container-custom{
+    @media (min-width: 800px) {
+        width: 700px;        
+    }
+  }
+
+main{
+}
+
+.spinner_container{
+  min-height: 60vh;
+  justify-content: center;
+  align-items: center;
 }

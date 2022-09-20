@@ -41,6 +41,7 @@ export class MovieformComponent implements OnInit {
       var pelicula = this.form.value as Pelicula
       this.service.addPelicula(pelicula).subscribe((response) =>{
         this.openSnackBar("Pelicula creada con éxito!", "OK");
+        this.Index();
       },
       error =>{
         this.openSnackBar(error.message + " :c", "OK");
@@ -65,12 +66,17 @@ export class MovieformComponent implements OnInit {
       idGenero: [null, Validators.required],
       nombreGenero: null,
       idCreador: [this.user?.id, Validators.required],
+      stars: ['', Validators.required],
       nombreCreador: null,
     });
   }
 
   LogIn(){
     this.router.navigate(["login"]);
+  }
+
+  Index(){
+    this.router.navigate([""]);
   }
 
 }

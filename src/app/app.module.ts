@@ -26,6 +26,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditMuviFormComponent } from './user/usuario/edit-muvi-form/edit-muvi-form.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StarRating, StarRatingComponent, StarRatingConfig, StarRatingModule } from 'angular-star-rating';
+import { MuviCardComponent } from './layout/muvi-card/muvi-card.component';
+import { ViewMuviComponent } from './movies/view-muvi/view-muvi.component';
+import { UserLikesComponent } from './user/user-likes/user-likes.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MovieformComponent,
     GuestComponent,
     PageComponent,
-    EditMuviFormComponent
+    EditMuviFormComponent,
+    MuviCardComponent,
+    ViewMuviComponent,
+    UserLikesComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +64,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    NgbModule
+    NgbModule,
+    StarRatingModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,53 @@
+<div class="p-1 row d-flex justify-content-between align-items-center">
+    <h2 mat-dialog-title class="col-11 align-self-start">{{muvi.titulo}}</h2>
+    <p  class="col-1 align-self-end">
+        <mat-icon mat-button [mat-dialog-close]="{state: userReviewed, pelicula: this.muvi}" >close</mat-icon>
+    </p>
+</div>
+<!-- visualizar muvi-->
+<div *ngIf="!showEdit">
+    <mat-dialog-content class="mat-typography d-flex justify-content-between main_content" >
+        <div class="info_container">
+            <div>
+                <p>{{muvi.nombreGenero}} | {{muvi.estreno}}</p>   
+            </div>
+            <div>
+                <p>De {{muvi.nombreCreador}}</p>
+            </div>
+            <div class="row align-items-center">
+                <div class="col align-self-start">
+                <mat-icon class="mat-18">favorite</mat-icon> <b>{{muvi.likeAverage}} / 5</b>
+                </div>
+                <div class="col align-self-start">
+                <mat-icon class="mat-18">groups</mat-icon> <b>{{muvi.likeAmount}}</b>
+                </div>
+            </div>
+            <div>
+                <star-rating [readOnly]="true" [rating]="muvi.stars"></star-rating>
+            </div>
+            <div class="row descripcion_container">
+                <p>{{muvi.descripcion}}</p>
+            </div>
+        </div>
+        <div class="image_container">
+            <img class="imageView img-fluid" [src]="muvi.imageURL" [alt]="muvi.titulo">
+        </div>
+    </mat-dialog-content>
+    <div class="hearts_container justify-content-center mt-2" *ngIf="!sameUser">
+        <span class="rating_tag" *ngIf="!notloggedIn">Tu review: {{userRate}}</span>
+        <ng-template #t let-fill="fill" class="justify-content-between">     
+        <span class="star p-2" [class.full]="fill === 100">
+            <span class="half" [style.width.%]="fill"><mat-icon class="mat-18">favorite</mat-icon></span><mat-icon class="mat-18">favorite</mat-icon>
+        </span>
+    </ng-template>     
+        <ngb-rating class="pb-2 justify-content-between hearts_dad" [(rate)]="userRate" [starTemplate]="t" [readonly]="readOnly" [max]="5"></ngb-rating>          
+    </div>
+    <mat-dialog-actions align="end">
+        <button mat-stroked-button *ngIf="editMode" (click)="showEditForm()">Editar</button>
+        <button mat-stroked-button *ngIf="notloggedIn" [mat-dialog-close]="{state: false, pelicula: this.muvi, login: true}">Inicia sesión!</button>
+        <button mat-stroked-button *ngIf="!readOnly" (click)="likeMuvi()">Guardar review</button>
+    </mat-dialog-actions>
+</div>
+<div *ngIf="showEdit">
+    <app-edit-muvi-form (goback)="closeEditForm($event)"></app-edit-muvi-form>
+</div>

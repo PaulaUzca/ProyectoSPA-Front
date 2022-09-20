@@ -1,9 +1,6 @@
 
 
-.card-text:last-child {
-  height: 150px;
-  overflow-y: hidden;
-}
+
 
 .card-columns {
   @media (min-width: 1200px) {
@@ -34,4 +31,14 @@
     font-size: 30px;
     font-weight: bold;
   }
+}
+
+.modalView {
+  background-color: #000;
+  width: 600px;
+  height: 600px
+}
+
+.mat-dialog-container{
+  overflow: hidden;
 }

@@ -7,7 +7,7 @@
 </div>
 <div class="m-5" *ngIf="user.id">
     <div class="container-fluid row align-items-center justify-content-center ">
-        <h1 class="row justify-content-md-center display-2 mt-5 mb-1">Agregar una película</h1>
+        <h1 class="row justify-content-md-center display-2 mt-2 mb-1">Agregar una película</h1>
         <form [formGroup]="form" (ngSubmit)="agregarMuvi()" 
             class="row container-fluid justify-content-md-center shadow-sm p-2 mb-5 bg-body rounded">
             <div class="col-sm-12 col-md-12 col-lg-6 w-100">
@@ -20,12 +20,16 @@
                 </mat-form-field>
 
                 <!-- Sinopsis -->
-                <mat-form-field appearance="outline"  class="col-md-12">
+                <mat-form-field appearance="outline" class="comentario col-md-12">
                     <mat-label>Comentario:</mat-label>
                     <textarea formControlName="descripcion" matInput required></textarea>
                     <mat-hint align="end">{{form.controls.descripcion.value?.length || 0}}/1000</mat-hint>
                     <mat-error *ngIf="this.form.controls.titulo.invalid">{{requiredError}}</mat-error>
                 </mat-form-field>
+
+                <div class="col-md-6 mb-4">
+                    <star-rating-control labelText="Estrellitas:" labelPosition="left" size="medium" [hoverEnabled]="true" formControlName="stars" [showHalfStars]="true" [starType]="'svg'"></star-rating-control>
+                </div>
 
                 <!-- Genero -->
                 <mat-form-field appearance="outline" class="col-md-6">
@@ -45,15 +49,14 @@
                 <!-- Imagen -->
                 <mat-form-field class="col-md-12" appearance="outline" class="col-md-12">
                     <mat-label>Imagen</mat-label>
-                    <input formControlName="imageURL" maxlength="700" type="URL" name="imagen" [(ngModel)]="imagenURL" matInput placeholder="Escribe la url de la imagen">
-                    <mat-hint class="hint-error">No es posible cargar la imagen ingresada, intentelo con otra imagen</mat-hint>
+                    <input formControlName="imageURL" maxlength="700" type="URL" name="imagen" matInput placeholder="Escribe la url de la imagen">
                     <mat-error *ngIf="this.form.controls.imageURL.invalid">{{requiredError}}</mat-error>
                 </mat-form-field>
               
             </div>
             <!-- Mostar la imagen -->
             <div class="col-sm-12 col-md-12 col-lg-4 w-100">
-                <img [src]="imagenURL? imagenURL : placeholderImg" class="img-fluid" alt="No ha sido posible cargar la imagen">
+                <img [src]="form.controls.imageURL.value? form.controls.imageURL.value : placeholderImg" class="img-fluid" alt="No ha sido posible cargar la imagen">
             </div> 
 
             <div class="d-flex justify-content-center">

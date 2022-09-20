@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
+    if(this.form.valid){
     var user = this.form.value as Usuario;
     this.service.loginUser(user)
     .subscribe(
@@ -46,9 +47,10 @@ export class LoginComponent implements OnInit {
           this.router.navigate(["",'']);
         }},
         (error) =>{
-          this.errorMsg = error.message;
+          this.errorMsg = error.error.message;
         }
     );
+      }
   }
 
   /** Abirir un mensajito de dialogo */

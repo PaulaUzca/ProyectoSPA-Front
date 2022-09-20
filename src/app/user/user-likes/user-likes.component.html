@@ -1,0 +1,16 @@
+<div class="container-fluid p-5">
+    <h1 class="text-center mb-1">Reviews comentadas</h1>
+    
+    <div  class="container-fluid p-5 " *ngIf="!muvisFound">
+        <h3 class="text-center mb-5">No has dado tu opinión en ninguna reseña</h3>
+    </div>
+
+    <div *ngIf="wait" class="d-flex justify-content-center align-items-center spinner_container">
+      <mat-spinner ></mat-spinner>
+    </div>
+    
+    <div class="card-columns" *ngIf="!wait">
+      <app-muvi-card *ngFor="let muvi of peliculasList" [muvi]="muvi" (seeMuvi)="openSee($event)"></app-muvi-card>
+      </div>
+</div>
+    
